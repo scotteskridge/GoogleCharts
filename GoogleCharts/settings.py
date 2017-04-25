@@ -25,12 +25,13 @@ SECRET_KEY = 'v^4@*5j6#0idkq44$t08i%anpg&r69-ph7fapv@*9o+*+3%iv7'
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = []
+ALLOWED_HOSTS = ['127.0.0.1', u'localhost']
 
 
 # Application definition
 
 INSTALLED_APPS = [
+    "apps.Charts",
     'django.contrib.admin',
     'django.contrib.auth',
     'django.contrib.contenttypes',
@@ -118,3 +119,7 @@ USE_TZ = True
 # https://docs.djangoproject.com/en/1.10/howto/static-files/
 
 STATIC_URL = '/static/'
+STATICFILES_DIRS = (
+    os.path.join(BASE_DIR, "static"),
+)
+STATIC_ROOT = os.path.join(os.path.dirname(BASE_DIR), "static_cdn")

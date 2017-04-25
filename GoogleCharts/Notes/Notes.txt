@@ -1,0 +1,66 @@
+Ok so I started out this project not really knowing what direction to take it in, now that I'm three days in I'm starting to get a little circular in my thoughts and need to set myself some direction. First off here's what I'd like to learn from this project:
+
+  1. Use Ajax to accomplish tasks without page reloads
+  2. Learn how to pass JSON objects back and forth from client side to server side
+  3. Learn how to dynamically pack up/parse forms using DOM traversal
+  4. Implement 2-3 basic level machine learning regressions and classifications
+  5. Practice OOP, refactoring and deployment (I know those aren't related)
+  6. Figure out a way to dynamically 2way data bind form data
+
+Features that I'd like to have:
+
+  1. visualization of a data set
+  2. visualization of 2-3 statistical analysis of that data
+  3. visualization and preferably animation of the projected linear regression as well as the relevant stats of that regression/classification
+  4. ability to turn on and off different post processes of the data, things like average, rolling average, min max lines (go look at stock charting tools) take a look at https://www.chartiq.com/products/market-data-widgets/
+  5. ability to modify meta data of my regressions specifically look at the Pythagorean distance rather than the vertical distance when measuring sum of squared errors of yHat
+
+// a side not on this right now none of my charts really interact at all so this tells me that really I want to build a dashboard with the ability to make data and then a bunch of buttons on how to process and view that data or subsets of that data and then each chart is just a different perspective on that data. So really I have two types of Data objects (maybe 3) one that is purely for display its the post process data for drawing lines. Another data set is the actual data so if we're talking about a company then it would be the stock price and fundaments of that company by date.
+
+Moonshots that would be fun:
+  1. Gameify stock trading on my data, figure out ideal profits with perfect future knowledge
+  2. Take it a step forward and make trades on guesses
+  3. make trades on options
+  4. import and parse real stock data
+  5. gameify that stock data
+
+
+Ok so lets think through the data structure on the one hand I should have a matrix of a stock with ["date", "price", "N - features(aka fundamentals)"] so that takes the form of :
+[
+  ["column header 1", "column header 2", "column header n", "these are all line labels" ]
+  ["date 1",          "data 1",         "date 2",         "data n"                      ]
+  ["date 2",          "data 1",         "date 2",         "data n"                      ]
+  ["date 3",          "data 1",         "date 2",         "data n"                      ]
+  ["date 4",          "data 1",         "date 2",         "data n"                      ]
+  ["date 5",          "data 1",         "date 2",         "data n"                      ]
+]
+
+this is the form that google charts wants data to come over in which is convenient but it may not be the data that I'm actually displaying. So really what's going to happen is that I'm going to have some master data that has attributes as columns and how those attributes change of times is tracked in the rows. The I'm going to have a displayTable that will be in the exact format but will be built by adding columns from processed data (average line, projections, statistical analysis, etc.)
+
+this tells me that at some point I'm going to need to learn how to map xml or csv into a matrix. So before I get too wrapped around what steps to build my table in lets go do some tutorials on linear regression and find out what type of out put I get and that will shape alot of the rest of this.
+
+04/24/2017 -
+  1. send json to google charts <--- not going to happen
+  2. have json with 3 sets of data to google charts (no need for random yet just make an add line function)
+  3. get scatter and line on same chart  OK SO THE BIT OF CODE FOR THIS IS :
+      series: {
+        1: { lineWidth: 1, pointSize: 0 } //<---- THIS IS THE BIT THAT MAKES SCATTER DRAWE LINES
+      }
+
+  Findings - So I don't think I've chosen the best tool for the job but I have spent a whole day researching and I need to get back to hacking. First off the Json that google charts expects is a little wonky so I think I'm better off sending over arrays in the format that it expects.
+
+  update so I have some functions to make and add lines/columns to data and format that data in ways that google charts can render, now I think I need to play with some real data and do some manipulation on it. lets add the following features:
+
+  1. Make random data (make it look stockish)
+  2. linear best fit
+  3. poly best fit
+  3. r2 values
+  4. variance
+  5. rolling average
+  6. bounded min and max (bollinger bands?)
+  7. ability to turn on an off each feature
+
+
+  1. Grab stock data
+    a. add ability to filter by date range and ticket symbol but GOOG works for now
+  2.
