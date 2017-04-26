@@ -25,8 +25,8 @@ def pageLoad(request):
             [5,  500, 400,     300,      600],
             [6,  200, 750,     -300,      900],
     ]
-    anotherColumn = DT.makeLine(len(data))
-    data = DT.addLine(data,anotherColumn )
+    # anotherColumn = DT.makeLine(len(data))
+    # data = DT.addLine(data,anotherColumn )
     DefualtData =DT.package(data,lables, xAxis)
 
     return JsonResponse({"DefualtData" : DefualtData })
